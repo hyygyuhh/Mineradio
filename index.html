@@ -577,7 +577,137 @@
             color: rgba(200, 220, 210, 0.8);
         }
 
+        .verify-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
+        .verify-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .verify-modal {
+            background: #111;
+            border: 1px solid rgba(140, 170, 160, 0.2);
+            border-radius: 12px;
+            padding: 36px 40px;
+            min-width: 300px;
+            max-width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .verify-modal-overlay.active .verify-modal {
+            transform: translateY(0);
+        }
+
+        .verify-modal-title {
+            font-size: 1rem;
+            color: rgba(200, 220, 210, 0.9);
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .verify-modal-sub {
+            font-size: 0.75rem;
+            color: rgba(120, 140, 135, 0.5);
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .verify-question {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: rgba(200, 220, 210, 0.95);
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .verify-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(20, 25, 23, 0.8);
+            border: 1px solid rgba(80, 100, 95, 0.3);
+            border-radius: 8px;
+            color: rgba(200, 220, 210, 0.9);
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 0.1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .verify-input:focus {
+            border-color: rgba(140, 170, 160, 0.5);
+        }
+
+        .verify-input.error {
+            border-color: rgba(200, 80, 80, 0.5);
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .verify-error-msg {
+            font-size: 0.75rem;
+            color: rgba(200, 100, 100, 0.8);
+            margin-bottom: 16px;
+            display: none;
+            letter-spacing: 0.03em;
+        }
+
+        .verify-error-msg.show {
+            display: block;
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(140, 170, 160, 0.1);
+            border: 1px solid rgba(140, 170, 160, 0.3);
+            color: rgba(200, 220, 210, 0.9);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .verify-btn:hover {
+            background: rgba(140, 170, 160, 0.18);
+            border-color: rgba(140, 170, 160, 0.4);
+        }
+
+        .verify-cancel {
+            margin-top: 10px;
+            background: transparent;
+            border-color: rgba(80, 100, 95, 0.2);
+            color: rgba(120, 140, 135, 0.5);
+        }
+
+        .verify-cancel:hover {
+            background: transparent;
+            border-color: rgba(80, 100, 95, 0.35);
+            color: rgba(120, 140, 135, 0.7);
+        }
 
         @media (max-width: 768px) {
             .logo {
@@ -702,12 +832,12 @@
         <div class="subtitle">Private Visual Radio</div>
 
         <div class="download-section">
-            <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Windows.exe" class="main-download-btn" download>
+            <a href="javascript:void(0)" class="main-download-btn" onclick="showVerifyModal('https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Windows.exe')">
                 Download Now <span class="version-tag">v1.1.1</span>
             </a>
 
             <div class="platform-buttons">
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Windows.exe" class="platform-btn" download>
+                <a href="javascript:void(0)" class="platform-btn" onclick="showVerifyModal('https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Windows.exe')">
                     <i class="fab fa-windows"></i>
                     Windows <span class="version-tag">v1.1.1</span>
                 </a>
@@ -715,7 +845,7 @@
                     <i class="fab fa-apple"></i>
                     macOS <span class="version-tag">v1.1.1</span>
                 </button>
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Android.apk.1" class="platform-btn" download="MineRadio-Android.apk">
+                <a href="javascript:void(0)" class="platform-btn" onclick="showVerifyModal('https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Android.apk.1')">
                     <i class="fab fa-android"></i>
                     Android <span class="version-tag">v1.1.1</span>
                 </a>
@@ -793,7 +923,7 @@
             <div class="mac-modal-subtitle">Select Your Mac Chip</div>
             
             <div class="mac-options">
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-arm64.dmg" class="mac-option" download>
+                <a href="javascript:void(0)" class="mac-option" onclick="hideMacModal(); showVerifyModal('https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-arm64.dmg')">
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
@@ -806,7 +936,7 @@
                     <div class="mac-option-arrow">→</div>
                 </a>
                 
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-x64.dmg" class="mac-option" download>
+                <a href="javascript:void(0)" class="mac-option" onclick="hideMacModal(); showVerifyModal('https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-x64.dmg')">
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
@@ -824,15 +954,73 @@
         </div>
     </div>
 
+    <div class="verify-modal-overlay" id="verifyModal" onclick="hideVerifyModal(event)">
+        <div class="verify-modal" onclick="event.stopPropagation()">
+            <div class="verify-modal-title">下载验证</div>
+            <div class="verify-modal-sub">请回答以下问题以继续下载</div>
+            <div class="verify-question" id="verifyQuestion"></div>
+            <input type="number" class="verify-input" id="verifyInput" placeholder="输入答案" autocomplete="off">
+            <div class="verify-error-msg" id="verifyError">答案错误，请重试</div>
+            <button class="verify-btn" id="verifyBtn" onclick="submitVerify()">确认</button>
+            <button class="verify-btn verify-cancel" onclick="hideVerifyModal()">取消</button>
+        </div>
+    </div>
+
     <script>
-        function downloadPlatform(platform) {
-            const platformNames = {
-                windows: 'Windows',
-                mac: 'macOS',
-                android: 'Android'
-            };
-            alert(`正在下载 Mineradio ${platformNames[platform]} 版本...`);
+        var _verifyAnswer = null;
+        var _pendingDownloadUrl = null;
+
+        function genQuestion() {
+            var a = Math.floor(Math.random() * 10) + 1;
+            var b = Math.floor(Math.random() * 10) + 1;
+            _verifyAnswer = a + b;
+            document.getElementById('verifyQuestion').textContent = a + ' + ' + b + ' = ?';
         }
+
+        function showVerifyModal(downloadUrl) {
+            genQuestion();
+            _pendingDownloadUrl = downloadUrl;
+            document.getElementById('verifyInput').value = '';
+            document.getElementById('verifyInput').classList.remove('error');
+            document.getElementById('verifyError').classList.remove('show');
+            document.getElementById('verifyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(function() { document.getElementById('verifyInput').focus(); }, 100);
+        }
+
+        function hideVerifyModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('verifyModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function submitVerify() {
+            var val = document.getElementById('verifyInput').value.trim();
+            if (val == _verifyAnswer) {
+                hideVerifyModal();
+                if (_pendingDownloadUrl) {
+                    var a = document.createElement('a');
+                    a.href = _pendingDownloadUrl;
+                    a.download = '';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            } else {
+                document.getElementById('verifyInput').classList.add('error');
+                document.getElementById('verifyError').classList.add('show');
+                document.getElementById('verifyInput').value = '';
+                document.getElementById('verifyInput').focus();
+                setTimeout(function() {
+                    document.getElementById('verifyInput').classList.remove('error');
+                }, 400);
+            }
+        }
+
+        document.getElementById('verifyInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') submitVerify();
+            if (e.key === 'Escape') hideVerifyModal();
+        });
 
         function showMacModal() {
             document.getElementById('macModal').classList.add('active');
@@ -848,6 +1036,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 hideMacModal();
+                hideVerifyModal();
             }
         });
     </script>
