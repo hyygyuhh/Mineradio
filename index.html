@@ -19,16 +19,16 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
             font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             background: #0a0a0a;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
         .diagonal-bg {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -53,7 +53,7 @@
         }
 
         .diagonal-lines {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -84,7 +84,7 @@
         .line-10 { transform: rotate(-10deg); top: 80%; left: -100%; }
 
         .noise-overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -102,8 +102,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px;
+            justify-content: flex-start;
+            padding: 60px 40px 120px;
         }
 
         .logo {
@@ -186,13 +186,16 @@
         }
 
         .main-download-btn {
+            display: inline-flex;
+            align-items: center;
             padding: 18px 50px;
             background: transparent;
             border: 1px solid rgba(140, 170, 160, 0.3);
             color: rgba(200, 220, 210, 0.9);
             font-size: 1rem;
             letter-spacing: 0.15em;
-            cursor: default;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .main-download-btn:disabled {
@@ -233,6 +236,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
 
         .platform-btn:hover {
@@ -300,14 +304,12 @@
         }
 
         .app-showcase {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
             width: 100%;
             max-width: 800px;
-            height: 35%;
-            opacity: 0.3;
+            height: 280px;
+            margin: 60px auto 0;
+            opacity: 0.25;
             pointer-events: none;
             animation: fadeInBottom 1.5s ease-out 1s both;
         }
@@ -315,11 +317,11 @@
         @keyframes fadeInBottom {
             from {
                 opacity: 0;
-                transform: translateX(-50%) translateY(30px);
+                transform: translateY(30px);
             }
             to {
-                opacity: 0.3;
-                transform: translateX(-50%) translateY(0);
+                opacity: 0.25;
+                transform: translateY(0);
             }
         }
 
@@ -403,10 +405,9 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
+            position: relative;
+            margin-top: 80px;
+            padding-bottom: 20px;
             text-align: center;
             z-index: 1;
         }
@@ -708,15 +709,15 @@
             <div class="platform-buttons">
                 <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Windows.exe" class="platform-btn" download>
                     <i class="fab fa-windows"></i>
-                    Windows
+                    Windows <span class="version-tag">v1.1.1</span>
                 </a>
                 <button class="platform-btn" onclick="showMacModal()">
                     <i class="fab fa-apple"></i>
-                    macOS
+                    macOS <span class="version-tag">v1.1.1</span>
                 </button>
                 <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Android.apk" class="platform-btn" download>
                     <i class="fab fa-android"></i>
-                    Android
+                    Android <span class="version-tag">v1.1.1</span>
                 </a>
             </div>
         </div>
@@ -745,33 +746,44 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="app-showcase">
-        <div class="app-window">
-            <div class="app-header">
-                <div class="app-dot"></div>
-                <div class="app-dot"></div>
-                <div class="app-dot"></div>
-            </div>
-            <div class="app-content">
-                <div class="app-sidebar">
-                    <div class="app-nav-item"></div>
-                    <div class="app-nav-item"></div>
-                    <div class="app-nav-item"></div>
-                    <div class="app-nav-item"></div>
+        <div class="app-showcase">
+            <div class="app-window">
+                <div class="app-header">
+                    <div class="app-dot"></div>
+                    <div class="app-dot"></div>
+                    <div class="app-dot"></div>
                 </div>
-                <div class="app-main">
-                    <div class="app-search"></div>
-                    <div class="app-grid">
-                        <div class="app-card"></div>
-                        <div class="app-card"></div>
-                        <div class="app-card"></div>
-                        <div class="app-card"></div>
+                <div class="app-content">
+                    <div class="app-sidebar">
+                        <div class="app-nav-item"></div>
+                        <div class="app-nav-item"></div>
+                        <div class="app-nav-item"></div>
+                        <div class="app-nav-item"></div>
                     </div>
-                    <div class="app-player"></div>
+                    <div class="app-main">
+                        <div class="app-search"></div>
+                        <div class="app-grid">
+                            <div class="app-card"></div>
+                            <div class="app-card"></div>
+                            <div class="app-card"></div>
+                            <div class="app-card"></div>
+                        </div>
+                        <div class="app-player"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/XxHuberrr/Mineradio" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <span class="footer-sep">·</span>
+                <span class="footer-version">v1.1.1</span>
+            </div>
+            <div class="footer-copy">© 2026 Mineradio. All rights reserved.</div>
         </div>
     </div>
 
@@ -781,7 +793,7 @@
             <div class="mac-modal-subtitle">Select Your Mac Chip</div>
             
             <div class="mac-options">
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-arm64.dmg" class="mac-option" download>
+                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.1.1-arm64.dmg" class="mac-option" download>
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
@@ -794,7 +806,7 @@
                     <div class="mac-option-arrow">→</div>
                 </a>
                 
-                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-x64.dmg" class="mac-option" download>
+                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.1.1-x64.dmg" class="mac-option" download>
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
@@ -810,17 +822,6 @@
 
             <button class="mac-modal-close" onclick="hideMacModal()">Cancel</button>
         </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer-links">
-            <a href="https://github.com/XxHuberrr/Mineradio" target="_blank" class="footer-link">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <span class="footer-sep">·</span>
-            <span class="footer-version">v1.1.1</span>
-        </div>
-        <div class="footer-copy">© 2026 Mineradio. All rights reserved.</div>
     </div>
 
     <script>
