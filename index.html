@@ -102,26 +102,28 @@
         }
 
         .logo {
-            font-size: clamp(5rem, 15vw, 10rem);
-            font-weight: 400;
-            letter-spacing: -0.03em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
             margin-bottom: 30px;
             animation: fadeInUp 1.2s ease-out;
             position: relative;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .logo-icon {
+            width: clamp(80px, 18vw, 160px);
+            height: clamp(80px, 18vw, 160px);
+            filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.5));
         }
 
-        .logo span {
+        .logo-text {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text span {
             display: inline-block;
         }
 
@@ -134,6 +136,17 @@
         .logo-7 { color: #98a8a0; }
         .logo-8 { color: #c4b896; }
         .logo-9 { color: #d4c8a8; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .subtitle {
             font-size: 0.9rem;
@@ -464,9 +477,13 @@
 
         @media (max-width: 768px) {
             .logo {
-                font-size: clamp(3rem, 18vw, 6rem);
-                letter-spacing: -0.02em;
+                gap: 18px;
                 margin-bottom: 20px;
+            }
+
+            .logo-text {
+                font-size: clamp(2rem, 12vw, 3.5rem);
+                letter-spacing: -0.01em;
             }
 
             .subtitle {
@@ -526,15 +543,26 @@
 
     <div class="container">
         <div class="logo">
-            <span class="logo-1">M</span>
-            <span class="logo-2">i</span>
-            <span class="logo-3">n</span>
-            <span class="logo-4">e</span>
-            <span class="logo-5">r</span>
-            <span class="logo-6">a</span>
-            <span class="logo-7">d</span>
-            <span class="logo-8">i</span>
-            <span class="logo-9">o</span>
+            <svg class="logo-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1a1a1a"/>
+                        <stop offset="100%" style="stop-color:#0a0a0a"/>
+                    </linearGradient>
+                    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:rgba(255,255,255,0.15)"/>
+                        <stop offset="100%" style="stop-color:rgba(255,255,255,0.03)"/>
+                    </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="504" height="504" rx="120" ry="120" fill="url(#bgGrad)"/>
+                <rect x="4" y="4" width="504" height="504" rx="120" ry="120" fill="none" stroke="url(#borderGrad)" stroke-width="2"/>
+                <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+                      font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+                      font-size="280" font-weight="500" fill="#ffffff" letter-spacing="-4">MR</text>
+            </svg>
+            <div class="logo-text">
+                <span class="logo-1">M</span><span class="logo-2">i</span><span class="logo-3">n</span><span class="logo-4">e</span><span class="logo-5">r</span><span class="logo-6">a</span><span class="logo-7">d</span><span class="logo-8">i</span><span class="logo-9">o</span>
+            </div>
         </div>
 
         <div class="subtitle">Private Visual Radio</div>
@@ -553,7 +581,7 @@
                     <i class="fab fa-apple"></i>
                     macOS
                 </button>
-                <a href="/download/MineRadio-Android.apk" class="platform-btn" download>
+                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/MineRadio-Android.apk" class="platform-btn" download>
                     <i class="fab fa-android"></i>
                     Android
                 </a>
@@ -595,7 +623,7 @@
             <div class="mac-modal-subtitle">Select Your Mac Chip</div>
             
             <div class="mac-options">
-                <a href="/download/MineRadio-macOS-arm64.dmg" class="mac-option" download>
+                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-arm64.dmg" class="mac-option" download>
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
@@ -608,7 +636,7 @@
                     <div class="mac-option-arrow">→</div>
                 </a>
                 
-                <a href="/download/MineRadio-macOS-x64.dmg" class="mac-option" download>
+                <a href="https://mineradio-download-1358801027.cos.ap-shanghai.myqcloud.com/Mineradio-1.2.1-x64.dmg" class="mac-option" download>
                     <div class="mac-option-info">
                         <div class="mac-option-icon">
                             <i class="fab fa-apple"></i>
